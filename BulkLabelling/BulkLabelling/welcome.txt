@@ -1,0 +1,5 @@
+Welcome to Simple Bulk Labelling Program!
+Enter a number.
+1. Label Creation
+2. Directory Creation
+3. Exit
