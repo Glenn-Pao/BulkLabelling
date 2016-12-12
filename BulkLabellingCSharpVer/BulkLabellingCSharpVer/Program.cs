@@ -259,13 +259,72 @@ namespace TestProj
 			}
 
 		}
-		public static string FinalizeDirectoryName(int entryNum, string directoryName, string trainingFileName)
+		public static string LabelTag()
 		{
-			string finalFileName;			//directory + image names
-			char YesOrNoFinalFileName;		//directory + image name check
+			string labelName;		//the image name
+			char YesOrNoLabelName;			//file name check
+
+			while (true) 
+			{
+
+				Console.WriteLine ("=========================================");
+				Console.WriteLine (" Define the label name (eg. sample)");
+				Console.WriteLine ("=========================================");
+
+				labelName = Console.ReadLine ();
+
+				//echo the directory file name
+				Console.WriteLine ("=========================================");
+				Console.WriteLine (labelName + " is this correct? [Y/N]");
+				Console.WriteLine ("=========================================");
+
+				//parse the input into a character
+				Char.TryParse (Console.ReadLine (), out YesOrNoLabelName);
+
+				//Convert to uppercase only to reduce hard coding issues
+				YesOrNoLabelName = Char.ToUpper (YesOrNoLabelName);
+
+				//enter into a loop that throws an error if invalid input
+				while (true) 
+				{
+					//break out of this loop once input is correct
+					if (YesOrNoLabelName == 'Y' || YesOrNoLabelName == 'N') 
+					{
+						break;
+					}
+
+					//this is when there is an error to the input
+					//ask the user again
+					string error;
+					error = "Error: Invalid input. \n";
+
+					Console.WriteLine ("=========================================");
+					Console.WriteLine (error);
+					Console.WriteLine ("=========================================");
+
+					//echo the label file name
+					Console.WriteLine ("=========================================");
+					Console.WriteLine (labelName + " is this correct? [Y/N]");
+					Console.WriteLine ("=========================================");
+
+					Char.TryParse (Console.ReadLine (), out YesOrNoLabelName);
+
+					//Convert to uppercase only
+					YesOrNoLabelName = Char.ToUpper (YesOrNoLabelName);
+				}
+				if (YesOrNoLabelName == 'Y') 
+				{
+					return labelName;
+				}
+			}
+		}
+		public static string FinalizeDirectoryName(int entryNum, string directoryName, string labelTag, string trainingFileName)
+		{
+			string finalFileName;			//directory + image + label names
+			char YesOrNoFinalFileName;		//directory + image + label name check
 
 			//combine both directory and training file names
-			finalFileName = directoryName + trainingFileName;
+			finalFileName = directoryName + trainingFileName + " " + labelTag;
 
 			//echo the label file name
 			Console.WriteLine ("=========================================");
@@ -316,14 +375,15 @@ namespace TestProj
 				return "0";
 			}
 		}
+
 		public static void WriteDirectoryData (string fileName)
 		{
 			//get the number of entries to add
 			int entryNum;
 			string directoryName;			//the directory name
 			string trainingFileName;		//the image name
-			string finalFileName;			//directory + image names
-
+			string labelTag;				//the label tag of this item
+			string finalFileName = "0";		//directory + image names
 
 			while (true) 
 			{
@@ -346,19 +406,18 @@ namespace TestProj
 					break;
 				}
 			}
-
-			//attempt to fill this in the first round
-			directoryName = DirectoryName ();					//get directory details
-			trainingFileName = TrainingFileName ();				//get file name details
-			finalFileName = FinalizeDirectoryName (entryNum, directoryName, trainingFileName);			//get the finalized directory detail
-
+	
 			//just to make sure the final file name is filled in
 			while (finalFileName == "0") 
 			{
-				directoryName = DirectoryName ();					//get directory details
-				trainingFileName = TrainingFileName ();				//get file name details
-				finalFileName = FinalizeDirectoryName (entryNum, directoryName, trainingFileName);			//get the finalized directory detail
+				directoryName = DirectoryName ();																		//get directory details
+				trainingFileName = TrainingFileName ();																	//get file name details
+				labelTag = LabelTag();																					//the label tag behind the directory
+				finalFileName = FinalizeDirectoryName (entryNum, directoryName, labelTag, trainingFileName);			//get the finalized directory detail
 			}
+
+
+
 
 			//if it is a yes, then proceed with writing into text file
 			//Once he confirms the directory name, get the file name
