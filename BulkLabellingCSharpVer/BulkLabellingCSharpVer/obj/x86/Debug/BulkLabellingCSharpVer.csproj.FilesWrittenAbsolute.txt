@@ -1,0 +1,5 @@
+/home/ntcadmin/Desktop/BulkLabelling/BulkLabellingCSharpVer/BulkLabellingCSharpVer/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ntcadmin/Desktop/BulkLabelling/BulkLabellingCSharpVer/BulkLabellingCSharpVer/bin/Debug/BulkLabellingCSharpVer.exe.mdb
+/home/ntcadmin/Desktop/BulkLabelling/BulkLabellingCSharpVer/BulkLabellingCSharpVer/bin/Debug/BulkLabellingCSharpVer.exe
+/home/ntcadmin/Desktop/BulkLabelling/BulkLabellingCSharpVer/BulkLabellingCSharpVer/obj/x86/Debug/BulkLabellingCSharpVer.exe
+/home/ntcadmin/Desktop/BulkLabelling/BulkLabellingCSharpVer/BulkLabellingCSharpVer/obj/x86/Debug/BulkLabellingCSharpVer.exe.mdb
