@@ -1,3 +1,0 @@
-fail
-success
-in-game
